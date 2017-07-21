@@ -36,14 +36,13 @@ io.on('connection', function(socket) {	//'connection' (1) này khác gì với '
 	
 	//khi lắng nghe được lệnh "atime" với một tham số, và chúng ta đặt tên tham số đó là data. Mình thích thì mình đặt thôi
     socket.on('transmit', function(data) {
-        console.log("Transmit data", data)
-        console.log(data);
-		socket.broadcast.to("receiver").emit('FROM TRANSMITTER', data);
+        console.log("Transmit data", data)	//ghi log ra			
+		socket.broadcast.to("receiver").emit('FROM TRANSMITTER', data); //Gửi dữ liệu xuống node receiver
     });
 	
-	socket.on('join', function(data) {
-		console.log("Join to ROOM", data)
-		socket.join(data.id)
+	socket.on('join', function(data) { //khi nhận lệnh join thì tham gia vào một phòng nào đó
+		console.log("Join to ROOM", data)	// ghi log ra
+		socket.join(data.id)				// join vào một phòng
 	})
 	
 });
